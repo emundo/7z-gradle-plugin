@@ -45,7 +45,7 @@ pluginBundle {
 
     plugins {
         sevenZPlugin {
-        tags = ['7z', 'extract']
+        tags = ['7z', '7zip', 'seven', 'zip', 'extract']
         description = 'Plugin Providing Tasks to handle 7z archives.'
         id = 'eu.emundo.sevenz'
         displayName = 'Gradle 7z plugin'
