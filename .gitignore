@@ -5,3 +5,8 @@ build/
 
 # IntelliJ IDEA
 .idea/
+
+# Visual Studio Code Language Support for Java 
+.classpath
+.project
+.settings/org.eclipse.buildship.core.prefs
