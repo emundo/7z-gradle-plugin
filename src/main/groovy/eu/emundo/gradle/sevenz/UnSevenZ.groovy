@@ -32,11 +32,13 @@ class UnSevenZ extends DefaultTask {
             if (parent != null && !parent.exists()) {
                 parent.mkdirs()
             }
-            FileOutputStream out = new FileOutputStream(curfile)
-            byte[] content = new byte[(int) entry.getSize()]
-            sevenZFile.read(content, 0, content.length)
-            out.write(content)
-            out.close()
+
+            int currByte = 0;
+            new BufferedOutputStream(new FileOutputStream(curfile)).withStream { ostream ->
+                while( (currByte = sevenZFile.read()) != -1 ) {
+                    ostream.write(currByte);
+                }
+            }
         }
     }
 
