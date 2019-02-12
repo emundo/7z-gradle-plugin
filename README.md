@@ -12,7 +12,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "gradle.plugin.eu.emundo:7z-gradle-plugin:1.0.0"
+        classpath "gradle.plugin.eu.emundo:7z-gradle-plugin:1.0.2"
     }
 }
 

@@ -1,0 +1,24 @@
+image: emundo/docker-compose-openjdk-node-gradle:openjdk-11-gradle-5.2
+
+stages:
+  - build
+  - publish
+
+cache:
+  paths:
+    - .gradle
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
+build:
+  stage: build
+  script:
+    - gradle assemble
+
+publish:
+  stage: publish
+  only:
+    - tags
+  script:
+    - gradle publishPlugins
