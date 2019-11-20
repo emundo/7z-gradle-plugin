@@ -40,6 +40,7 @@ class UnSevenZ extends DefaultTask {
                 }
             }
         }
+        sevenZFile.close()
     }
 
 }
