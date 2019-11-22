@@ -21,25 +21,27 @@ class UnSevenZ extends DefaultTask {
 
     @TaskAction
     void extract(IncrementalTaskInputs inputs) {
-        SevenZFile sevenZFile = new SevenZFile(sourceFile)
-        SevenZArchiveEntry entry
-        while ((entry = sevenZFile.getNextEntry()) != null) {
-            if (entry.isDirectory()) {
-                continue
-            }
-            File curfile = new File(outputDir, entry.getName())
-            File parent = curfile.getParentFile()
-            if (parent != null && !parent.exists()) {
-                parent.mkdirs()
-            }
+        new SevenZFile(sourceFile).withCloseable {sevenZFile ->
+            SevenZArchiveEntry entry
+            while ((entry = sevenZFile.getNextEntry()) != null) {
+                if (entry.isDirectory()) {
+                    continue
+                }
+                File curfile = new File(outputDir, entry.getName())
+                File parent = curfile.getParentFile()
+                if (parent != null && !parent.exists()) {
+                    parent.mkdirs()
+                }
 
-            int currByte = 0;
-            new BufferedOutputStream(new FileOutputStream(curfile)).withStream { ostream ->
-                while( (currByte = sevenZFile.read()) != -1 ) {
-                    ostream.write(currByte);
+                int currByte = 0;
+                new BufferedOutputStream(new FileOutputStream(curfile)).withStream { ostream ->
+                    while( (currByte = sevenZFile.read()) != -1 ) {
+                        ostream.write(currByte);
+                    }
                 }
             }
         }
+
     }
 
 }
