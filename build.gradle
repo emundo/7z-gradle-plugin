@@ -28,7 +28,7 @@ dependencies {
     implementation gradleApi()
     implementation localGroovy()
 
-    implementation "org.apache.commons:commons-compress:1.18"
+    implementation "org.apache.commons:commons-compress:1.19"
     implementation "org.tukaani:xz:1.8"
 }
 
