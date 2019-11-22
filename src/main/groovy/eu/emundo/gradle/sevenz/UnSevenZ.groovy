@@ -9,7 +9,7 @@ import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.incremental.IncrementalTaskInputs
 
 /**
- * Gradle Task whic extracts a 7z archive.
+ * Gradle Task which extracts a 7z archive.
  */
 class UnSevenZ extends DefaultTask {
 
