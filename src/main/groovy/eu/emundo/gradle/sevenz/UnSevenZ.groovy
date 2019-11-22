@@ -6,7 +6,7 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
-import org.gradle.api.tasks.incremental.IncrementalTaskInputs
+import org.gradle.work.InputChanges
 
 /**
  * Gradle Task which extracts a 7z archive.
@@ -20,7 +20,7 @@ class UnSevenZ extends DefaultTask {
     File outputDir
 
     @TaskAction
-    void extract(IncrementalTaskInputs inputs) {
+    void extract(InputChanges inputs) {
         new SevenZFile(sourceFile).withCloseable {sevenZFile ->
             SevenZArchiveEntry entry
             while ((entry = sevenZFile.getNextEntry()) != null) {
@@ -33,15 +33,14 @@ class UnSevenZ extends DefaultTask {
                     parent.mkdirs()
                 }
 
-                int currByte = 0;
+                int currByte = 0
                 new BufferedOutputStream(new FileOutputStream(curfile)).withStream { ostream ->
                     while( (currByte = sevenZFile.read()) != -1 ) {
-                        ostream.write(currByte);
+                        ostream.write(currByte)
                     }
                 }
             }
         }
-
     }
 
 }
