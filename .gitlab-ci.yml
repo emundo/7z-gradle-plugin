@@ -1,5 +1,4 @@
-image: emundo/docker-compose-openjdk-node-gradle:openjdk-8-gradle-5.4
-
+image: emundo/docker-compose-openjdk-node-gradle:openjdk-8-gradle-6
 stages:
   - build
   - publish
